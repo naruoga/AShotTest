@@ -4,7 +4,9 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
@@ -33,10 +35,26 @@ public class AShotTest {
         genericTest("gecko");
     }
 
-    // TODO: Someone may write IETest, EdgeTest, SafariTest and so on...
+    @Test
+    public void IETest() throws IOException {
+        WebDriverManager.iedriver().setup();
+        driver = new InternetExplorerDriver();
+        driver.manage().window().maximize();
+        genericTest("InternetExplorer");
+    }
+
+    @Test
+    public void MSEdgeTest() throws IOException {
+        WebDriverManager.edgedriver().setup();
+        driver = new EdgeDriver();
+        driver.manage().window().maximize();
+        genericTest("MSEdge");
+    }
+
+    // TODO: Someone may write other browsers' tests
 
 
-    void genericTest(String browsername) throws IOException {
+    private void genericTest(String browsername) throws IOException {
         driver.get("https://github.com/yandex-qatools/ashot");
 
         Screenshot screenshot = new AShot()
