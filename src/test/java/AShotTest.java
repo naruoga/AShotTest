@@ -1,6 +1,8 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -35,6 +37,7 @@ public class AShotTest {
         genericTest("gecko");
     }
 
+    @EnabledOnOs(OS.WINDOWS)
     @Test
     public void IETest() throws IOException {
         WebDriverManager.iedriver().setup();
@@ -43,6 +46,7 @@ public class AShotTest {
         genericTest("InternetExplorer");
     }
 
+    @EnabledOnOs(OS.WINDOWS)
     @Test
     public void MSEdgeTest() throws IOException {
         WebDriverManager.edgedriver().setup();
@@ -69,7 +73,7 @@ public class AShotTest {
         ImageIO.write(screenshot.getImage(), "png", outputfile);
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         driver.quit();
     }

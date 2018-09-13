@@ -11,8 +11,14 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testCompile 'org.junit.jupiter:junit-jupiter-params:5.3.1'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
     testCompile 'com.github.naruoga:ashot:-SNAPSHOT'
     testCompile 'org.seleniumhq.selenium:selenium-java:3.14.0'
     testCompile 'io.github.bonigarcia:webdrivermanager:3.0.0'
+}
+
+test {
+    useJUnitPlatform()
 }
